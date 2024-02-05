@@ -72,10 +72,11 @@ fun main() {
 // Data classes são classes pra que armazenemos valores!
 // override  -> sobescrever a fução apenas para igualar e testar a condição de igualdade do Id.
 // hashCode -> é um código HASH pega as propriedades que existem dentro da estrutura(objeto) de dados e gera um valor, por exemplo, Objeto User, secondUser, thirdUser
-data class User(val name: String, val id: Int) {
-    override fun equals(other: Any?) = other is User && other.id == this.id
-}
+//data class User(val name: String, val id: Int) {
+ //   override fun equals(other: Any?) = other is User && other.id == this.id
+//}
 
+/*
 fun main() {
     val user = User("Alex", 1)
     println(user)
@@ -99,15 +100,70 @@ fun main() {
     println("id = ${thirdUser.component2()}")
 
 }
+*/
+
+// ************************************** ENUM Classes ********************************************
+
+// Representa um numero finito
+// Representar valores que estao estaticos
+// Representa valores que são constantes -> exemplo: o nivel de um jogo de video game, NIVEL: Dificil, NIVEL: Médio, NIVEL: Fácil.
+
+// enum class State {
+//    IDLE, RUNNING, FINISHED
+//}
+
+//fun main() {
+ //   val state = State.FINISHED
+ //   val message = when (state) {
+  //      State.IDLE -> "It's idle"
+   //     State.RUNNING -> "It's running"
+   //     State.FINISHED -> "It's finished"
+   // }
+
+  //  println(message)
+//}
+
+/*
+enum class Color(val rgb: Int) {
+    RED(0xFF0000),
+    GREEN(0x00FF00),
+    BLUE(0x0000FF),
+    YELLOW(0xFFFF00);
+
+    fun containsRed() = (this.rgb and 0xFF0000 != 0) // comparação si em algum aspecto contem vermelho em agulma delas.(Cores RGB)
+}
+
+fun main() {
+    val red = Color.RED
+    println(red)
+    println(red.containsRed())
+    println(Color.BLUE.containsRed())
+    println(Color.YELLOW.containsRed())
+}
+
+*/
+
+// ****************************** Sealed Classes (CLASSES SELADAS) *****************************************
+
+// Sealed Classes não é acessada fora do pacote aonde foi definida.
+
+sealed class Mammal(val name: String)
+
+    class Cat(val catName: String) : Mammal(catName)
+    class Human(val humanName: String, val job: String) : Mammal(humanName)
+
+    fun greetMammal(mammal: Mammal): String {
+        when (mammal) {
+            is Human -> return "Hello ${mammal.name}; You're working as a ${mammal.job}"
+            is Cat -> return "Hello ${mammal.name}"
+        }
+    }
 
 
+fun main() {
+    val cat: Mammal = Cat("Snowy")
+    val human: Mammal = Human("Luis Cutilak", "Software Developer")
 
-
-
-
-
-
-
-
-
-
+    println(greetMammal(cat))
+    println(greetMammal(human))
+}
