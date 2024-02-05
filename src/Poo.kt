@@ -44,6 +44,7 @@ fun main() {
 
 // ***************************** Herança Passando Argumentos do Construtor para a Superclasse ******************************
 
+/*
 open class Lion(val name: String, val origin:String) {
     fun sayHello(){
         print ("$name, the lion from $origin says: graoh!")
@@ -64,8 +65,40 @@ fun main() {
 // * Herança
 // * Polimorfismo - a questão que podemos tratar o "Lion" de uma forma mais genérica! ou o "Asiatic" como uma forma mais especifica.
 
+*/
 
+// ******************************************* DATA CLASSES *************************************************
 
+// Data classes são classes pra que armazenemos valores!
+// override  -> sobescrever a fução apenas para igualar e testar a condição de igualdade do Id.
+// hashCode -> é um código HASH pega as propriedades que existem dentro da estrutura(objeto) de dados e gera um valor, por exemplo, Objeto User, secondUser, thirdUser
+data class User(val name: String, val id: Int) {
+    override fun equals(other: Any?) = other is User && other.id == this.id
+}
+
+fun main() {
+    val user = User("Alex", 1)
+    println(user)
+    val secondUser = User("Alex", 1)
+    val thirdUser = User("Max", 2)
+
+    println("user == secondUser: ${user == secondUser}") // dois iguais compara somente as estruturas do objeto entao retorna true(comparação entre user e secondUser, que tem estruras iguais, como Id, e nome.
+    println("user == thirdUser: ${user == thirdUser}") //
+
+    println(user.hashCode())
+    println(secondUser.hashCode())
+    println(thirdUser.hashCode())
+
+    println(user.copy())
+    println(user === user.copy())
+    println(user.copy("Max"))
+    println(user.copy(id = 3))
+    println(user.copy("Max", id = 4))
+
+    println("name = ${secondUser.component1()}")
+    println("id = ${thirdUser.component2()}")
+
+}
 
 
 
