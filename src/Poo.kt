@@ -147,6 +147,7 @@ fun main() {
 
 // Sealed Classes não é acessada fora do pacote aonde foi definida.
 
+/*
 sealed class Mammal(val name: String)
 
     class Cat(val catName: String) : Mammal(catName)
@@ -167,3 +168,52 @@ fun main() {
     println(greetMammal(cat))
     println(greetMammal(human))
 }
+
+ */
+
+// ****************************** OBJECT KEYWORD ******************************************
+
+// singleton garante uma instancia unica. (design pattern)
+
+// Para usos em especifico na maioria dos casos, nao há necessidade de instanciar uma classe dependendo do seu uso.
+
+// ** OBJECT EXPRESSION ** Object como uma Expression.
+
+/*
+fun rentPrice(standardDays: Int, festivityDays: Int, specialDays: Int): Unit  {
+
+    val dayRates = object {
+        var standard: Int = 30 * standardDays
+        var festivity: Int = 50 * festivityDays
+        var special: Int = 100 * specialDays
+    }
+
+    val total = dayRates.standard + dayRates.festivity + dayRates.special
+
+    println("Total price: $$total")
+
+}
+
+fun main() {
+    rentPrice(10, 2, 1)
+}
+
+ */
+
+
+// OBJECT DECLARATION - Podemos Declarar uma classe como um objeto!
+// Podemos acessar de maneira direta e unica
+
+// Campanion Objects, criação de um bloco onde estamos
+
+
+
+
+
+
+
+
+
+
+
+
